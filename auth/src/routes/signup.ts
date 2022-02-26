@@ -1,4 +1,5 @@
 import express, { Response, Request } from "express";
+import { RequestValidationError } from "../errors/requestValidationError";
 import { body, validationResult } from "express-validator";
 
 const router = express.Router();
@@ -16,7 +17,7 @@ router.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      throw Error("Invalid email or password");
+      throw new RequestValidationError(errors.array());
     }
     const { email, password } = req.body;
     console.log("user creation");
