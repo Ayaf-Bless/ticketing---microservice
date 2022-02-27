@@ -8,6 +8,7 @@ import { signOut } from "./routes/signout";
 
 // Error
 import { errorHandler } from "./middlewares/errorHandler";
+import { NotFoundError } from "./errors/notFoundError";
 
 const app = express();
 app.use(json());
@@ -17,6 +18,10 @@ app.use(signIn);
 app.use(signOut);
 app.use(signUp);
 
+// Generic error handler
+app.all("*", () => {
+  throw new NotFoundError();
+});
 app.use(errorHandler);
 
 app.listen(3000, () => {
