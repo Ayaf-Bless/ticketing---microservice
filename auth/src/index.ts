@@ -1,4 +1,5 @@
 import express from "express";
+import "express-async-errors";
 import { json } from "body-parser";
 //Routes
 import { me } from "./routes/me";
@@ -19,7 +20,7 @@ app.use(signOut);
 app.use(signUp);
 
 // Generic error handler
-app.all("*", () => {
+app.all("*", async () => {
   throw new NotFoundError();
 });
 app.use(errorHandler);
