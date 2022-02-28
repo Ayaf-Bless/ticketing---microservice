@@ -34,12 +34,13 @@ router.post(
     await user.save();
 
     //Generate JWToken
+    // @ts-ignore
     const userJWT = jwt.sign(
       {
         id: user.id,
         email: user.email,
       },
-      "My very private secret"
+      process.env.JWT_KEY!
     );
     // storing to the session
     req.session = {
