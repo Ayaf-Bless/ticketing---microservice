@@ -30,7 +30,6 @@ router.post(
     await user.save();
 
     //Generate JWToken
-    // @ts-ignore
     const userJWT = jwt.sign(
       {
         id: user.id,
