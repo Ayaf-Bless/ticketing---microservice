@@ -20,3 +20,21 @@ it("returns a 400 status code with an invalid email", async () => {
     })
     .expect(400);
 });
+
+it("disallows diplicate email", async () => {
+  await request(app)
+    .post("/api/users/signUp")
+    .send({
+      email: "test1@gmail.com",
+      password: "1234",
+    })
+    .expect(201);
+
+  await request(app)
+    .post("/api/users/signUp")
+    .send({
+      email: "test1@gmail.com",
+      password: "1234",
+    })
+    .expect(400);
+});
