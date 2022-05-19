@@ -19,9 +19,8 @@ spec:
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
-                  name: jwt-secret
+                  name: secret-jwt
                   key: JWT_KEY
-
 ---
 apiVersion: v1
 kind: Service
